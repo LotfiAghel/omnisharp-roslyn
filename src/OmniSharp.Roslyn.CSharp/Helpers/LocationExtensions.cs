@@ -32,7 +32,7 @@ namespace OmniSharp.Helpers
                 Column = lineSpan.HasMappedPath ? 0 : lineSpan.StartLinePosition.Character, // when a #line directive maps into a separate file, assume columns (0,0)
                 EndLine = lineSpan.EndLinePosition.Line,
                 EndColumn = lineSpan.HasMappedPath ? 0 : lineSpan.EndLinePosition.Character,
-                Projects = documents.Select(document => document!=null && document.Project!=null && document.Project.Name).ToArray()
+                Projects = documents.Select(document => (document!=null && document.Project!=null)?document.Project.Name:null).ToArray()
             };
 
             static SourceText GetSourceText(Location location, IEnumerable<Document> documents, bool hasMappedPath)
